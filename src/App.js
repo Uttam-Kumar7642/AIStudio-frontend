@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './store/AuthContext';
+import { getData } from "./utils/api";
 import './styles/global.css';
 
 import LandingPage from './pages/LandingPage';

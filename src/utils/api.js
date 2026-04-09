@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: API,
   headers: { 'Content-Type': 'application/json' },
-  timeout: 60000, // 60s for AI generation
+  timeout: 60000,
 });
 
 // ─── Request Interceptor: Attach Token ────────────────────────────────────────
@@ -47,6 +48,9 @@ export const aiAPI = {
   getSuggestions: (content, type) => api.post('/ai/suggestions', { content, type }),
 };
 
+export const getData = () => {
+  return axios.get(`${API}/api/data`);
+};
 // ─── Documents API ────────────────────────────────────────────────────────────
 export const documentsAPI = {
   getAll: (params) => api.get('/documents', { params }),
